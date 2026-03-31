@@ -1,0 +1,25 @@
+%%{init: {'theme': 'dark'}}%%
+graph LR
+    subgraph Step1["Step 1: Project Q, K, V"]
+        X["Input X<br/>(T × d_model)"] --> Q["Q = X × W_Q"]
+        X --> K["K = X × W_K"]
+        X --> V["V = X × W_V"]
+    end
+
+    subgraph Step2["Step 2: Compute Attention Scores"]
+        Q --> QK["Q × K^T"]
+        K --> QK
+        QK --> Scale["÷ √d_k<br/>(prevents gradient<br/>saturation)"]
+        Scale --> Mask["Causal Mask<br/>(future = -∞)"]
+        Mask --> SM["Softmax<br/>(rows sum to 1)"]
+    end
+
+    subgraph Step3["Step 3: Weighted Sum"]
+        SM --> MUL["Attention × V"]
+        V --> MUL
+        MUL --> OUT["Output<br/>(T × d_model)"]
+    end
+
+    style Step1 fill:#1a1a2e,stroke:#16213e
+    style Step2 fill:#0f3460,stroke:#16213e
+    style Step3 fill:#162447,stroke:#1f4068

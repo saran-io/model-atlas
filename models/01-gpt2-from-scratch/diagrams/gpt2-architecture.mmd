@@ -1,0 +1,35 @@
+%%{init: {'theme': 'dark'}}%%
+graph TB
+    subgraph Input["Input Processing"]
+        A["Input Text:<br/>'The cat sat'"] --> B["BPE Tokenizer<br/>(50,257 tokens)"]
+        B --> C["Token IDs:<br/>[464, 3797, 3332]"]
+        C --> D["Token Embeddings<br/>(50,257 × 768)"]
+        E["Position IDs:<br/>[0, 1, 2]"] --> F["Position Embeddings<br/>(1,024 × 768)"]
+        D --> G["+ Add"]
+        F --> G
+    end
+
+    G --> H["Dropout"]
+
+    subgraph Blocks["× 12 Transformer Blocks"]
+        H --> I
+
+        subgraph Block1["Transformer Block"]
+            I["Input (B, T, 768)"] --> J["LayerNorm 1"]
+            J --> K["Multi-Head<br/>Self-Attention<br/>(12 heads × 64 dim)"]
+            K --> L["+ Residual"]
+            I --> L
+            L --> M["LayerNorm 2"]
+            M --> N["Feed-Forward<br/>768 → 3072 → 768<br/>(GELU activation)"]
+            N --> O["+ Residual"]
+            L --> O
+        end
+    end
+
+    O --> P["Final LayerNorm"]
+    P --> Q["LM Head<br/>(768 → 50,257)<br/>Weight Tied with Token Emb"]
+    Q --> R["Logits → Softmax → Next Token"]
+
+    style Input fill:#1a1a2e,stroke:#16213e
+    style Blocks fill:#0f3460,stroke:#16213e
+    style Block1 fill:#162447,stroke:#1f4068
