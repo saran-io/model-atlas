@@ -4,7 +4,7 @@ description: "Week 1 of a 24-week models series: a from-scratch PyTorch GPT-2, r
 date: "2026-04-04"
 slug: "gpt2-from-scratch"
 tags: ["LLMs", "Transformers", "PyTorch", "GPT-2", "AI Engineering"]
-canonical: "https://sayora.dev/blog/gpt2-from-scratch"
+canonical: "https://saran-io.github.io/blog/building-gpt2-from-scratch/"
 ---
 
 > Week 1 of my 24-week deep dive into AI models. I'm Sayora, co-founder of [Tekvo AI](https://tekvo.ai), where we build agentic systems. This week I implemented GPT-2 from scratch in PyTorch — every layer, every matrix multiply. Here's everything I learned.
