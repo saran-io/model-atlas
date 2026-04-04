@@ -122,8 +122,8 @@ Standalone reference guides that span multiple models:
 ## Run Locally
 
 ```bash
-git clone https://github.com/sayora/ai-models-deep-dive.git
-cd ai-models-deep-dive
+git clone https://github.com/saran-io/model-atlas.git
+cd model-atlas
 
 # Each model has its own requirements.txt
 cd models/01-gpt2-from-scratch/code

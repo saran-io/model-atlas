@@ -109,5 +109,7 @@ These are **optimizations**, not reinventions. The core loop — attention + FFN
 
 ---
 
-**Full write-up**: [DEEP-DIVE.md](DEEP-DIVE.md)
-**Next**: [02 — GPT-4o vs GPT-4.1](../02-gpt4o-vs-gpt41)
+**Full write-up**: [DEEP-DIVE.md](DEEP-DIVE.md)  
+**Blog (publish-ready)**: [blog/week-01-gpt2-from-scratch.md](../../blog/week-01-gpt2-from-scratch.md)  
+**Animated explainer**: open [explainer/index.html](explainer/index.html) in a browser  
+**Social copy**: [social/linkedin.md](social/linkedin.md) · [social/x.md](social/x.md)

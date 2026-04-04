@@ -21,7 +21,7 @@ GPT-2 is a **decoder-only transformer**. Let's break down what that means.
 
 The original Transformer (Vaswani et al., 2017) had an encoder and a decoder. GPT-2 threw away the encoder and kept only the decoder. Why? Because for text generation, you only need to predict the next token given previous tokens. The encoder was designed for understanding input sequences (useful for translation), but for pure generation, it's unnecessary complexity.
 
-![GPT-2 Architecture](../diagrams/gpt2-architecture.png)
+![GPT-2 Architecture](diagrams/gpt2-architecture.png)
 
 ### The Components (In Order)
 
@@ -101,7 +101,7 @@ GPT-2 uses GELU activation (a smooth approximation of ReLU that allows small neg
 
 ## System Design: Where GPT-2 Architecture Fits
 
-![System Design](../diagrams/self-attention.png)
+![Self-attention flow](diagrams/self-attention.png)
 
 While you won't deploy GPT-2 itself in production, understanding its architecture tells you exactly what's happening inside every API call you make:
 
@@ -135,6 +135,6 @@ If you can implement GPT-2 from scratch, you can read any modern LLM's code and 
 
 *This is week 1 of my 24-week AI models deep dive. Every week I pick one model, build something real with it, and share what I learn. Follow along:*
 
-*Code: [GitHub link]*
+*Code: [github.com/saran-io/model-atlas](https://github.com/saran-io/model-atlas) — `models/01-gpt2-from-scratch/code/`*
 
 *Next week: GPT-4o vs GPT-4.1 — I'm running 500 agentic tasks on both. Stay tuned.*
