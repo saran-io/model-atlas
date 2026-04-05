@@ -1,6 +1,6 @@
 """
 GPT-2 (117M) — Built From Scratch
-Week 1 of the AI Models Deep Dive by Sayora (Tekvo AI)
+Week 1 of the AI Models Deep Dive by saran-io (Tekvo)
 
 This is NOT a wrapper around HuggingFace. Every component is implemented
 from first principles so you understand exactly what happens at each layer.
@@ -416,7 +416,7 @@ if __name__ == "__main__":
 
     print("=" * 60)
     print("GPT-2 From Scratch — Week 1 of AI Models Deep Dive")
-    print("by Sayora (Tekvo AI)")
+    print("by saran-io (Tekvo)")
     print("=" * 60)
 
     # Load the real GPT-2 weights into our implementation
