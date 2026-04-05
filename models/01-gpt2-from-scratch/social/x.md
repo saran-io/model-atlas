@@ -6,15 +6,15 @@ Single post (under 280 chars if you shorten URLs with x.com or a link shortener)
 
 **Option A — single post (~270 chars with t.co links):**
 
-Week 1/24: I built GPT-2 from scratch in PyTorch and loaded real weights — not HF black boxes, every layer explicit.
+Week 1/24: I'm Saran — built GPT-2 from scratch in PyTorch + real weights. Every layer explicit.
 
 Why bother? GPT-4 / Claude / Llama are still this architecture, scaled.
 
-Repo + animated explainer + blog:
+Repo + explainer + blog:
 https://github.com/saran-io/model-atlas
 [BLOG_URL]
 
-Co-founder @TekvoAI — agentic systems daily.
+Co-founder, Tekvo — agentic systems daily.
 
 ---
 

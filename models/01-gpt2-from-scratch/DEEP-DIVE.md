@@ -1,6 +1,6 @@
 # I Built GPT-2 From Scratch — Here's What Every AI Engineer Should Know
 
-> Week 1 of my 24-week deep dive into AI models. I'm Sayora, co-founder of Tekvo AI, where we build agentic systems. This week I implemented GPT-2 from scratch in PyTorch — every layer, every matrix multiply. Here's everything I learned.
+> Week 1 of my 24-week deep dive into AI models. I'm **Saran**, co-founder of [Tekvo](https://tekvo.ai), where we build agentic systems. This week I implemented GPT-2 from scratch in PyTorch — every layer, every matrix multiply. Here's everything I learned.
 
 ## TL;DR
 - GPT-2 is the architecture behind every major LLM today — GPT-4, Claude, Llama, DeepSeek all descend from it
@@ -105,8 +105,8 @@ GPT-2 uses GELU activation (a smooth approximation of ReLU that allows small neg
 
 While you won't deploy GPT-2 itself in production, understanding its architecture tells you exactly what's happening inside every API call you make:
 
-### Why This Matters for Agentic Systems (Tekvo AI Perspective)
-At Tekvo AI, every agent we build calls an LLM that's a direct descendant of GPT-2. Understanding the architecture helps us:
+### Why This Matters for Agentic Systems (Tekvo perspective)
+At **Tekvo**, every agent we build calls an LLM that's a direct descendant of GPT-2. Understanding the architecture helps us:
 - **Debug failures:** When an agent hallucinates, it's because the attention mechanism assigned high weight to irrelevant context
 - **Optimize costs:** Token count directly maps to compute because of the T² attention complexity
 - **Choose models:** Dense transformers (GPT-2's architecture) vs MoE (Mixtral's) have fundamentally different cost profiles

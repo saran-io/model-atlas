@@ -2,7 +2,7 @@
 
 ### 24 weeks. 24 models. Every one built from scratch or benchmarked on real tasks.
 
-I'm **Sayora**, co-founder of [Tekvo AI](https://tekvo.ai), where we build agentic AI systems. This repo is my open notebook — every week I pick one AI model, tear it apart, build something real with it, and document everything so you can learn from it.
+I'm **Saran**, co-founder of [Tekvo](https://tekvo.ai), where we build agentic AI systems. This repo is my open notebook — every week I pick one AI model, tear it apart, build something real with it, and document everything so you can learn from it.
 
 **This is not a paper summary repo.** Every model has:
 - Runnable code you can execute in minutes
@@ -140,9 +140,9 @@ Most models run on a MacBook. GPU-heavy experiments note this in their README.
 
 New model every Friday.
 
-- **Blog**: [sayora.dev/blog](https://sayora.dev/blog)
-- **LinkedIn**: [/in/sayora](https://linkedin.com/in/sayora)
-- **X**: [@sayora](https://x.com/sayora)
+- **Blog**: [saran-io.github.io/blog](https://saran-io.github.io/blog)
+- **LinkedIn**: [linkedin.com/in/saran-io](https://www.linkedin.com/in/saran-io/)
+- **X**: [@saran_io](https://x.com/saran_io)
 
 ---
 

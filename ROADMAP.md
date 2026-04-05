@@ -4,7 +4,7 @@
 
 ## Your Differentiation Angle
 
-You're not a "tech blogger." You're the **co-founder of Tekvo AI who builds agentic systems daily**. Every piece of content should answer: *"What did I learn building with this model that you can't learn from the docs?"*
+You're not a "tech blogger." You're **Saran** — co-founder of **Tekvo**, building agentic systems daily. Every piece of content should answer: *"What did I learn building with this model that you can't learn from the docs?"*
 
 ---
 
@@ -55,12 +55,12 @@ You're not a "tech blogger." You're the **co-founder of Tekvo AI who builds agen
 | 18 | Audio/Speech (Whisper, Moshi, SNAC) | Build a voice-to-agent pipeline | "Voice agents: the architecture behind real-time AI conversations" |
 
 ## Phase 5: Deployment & System Design (Weeks 19-22)
-*Theme: How to actually use these models in production — your Tekvo AI expertise*
+*Theme: How to actually use these models in production — Saran's Tekvo experience*
 
 | Week | Model/Topic | Build Project | Key Angle |
 |------|------------|---------------|-----------|
 | 19 | Quantization & Optimization (GGUF, GPTQ, AWQ) | Quantize Llama, benchmark quality vs speed | "Quantization in practice: the quality you lose and the money you save" |
-| 20 | Model Routing & Orchestration | Build a model router that picks the right model per task | "Why we use 5 different models at Tekvo AI (and how we route between them)" |
+| 20 | Model Routing & Orchestration | Build a model router that picks the right model per task | "Why we use 5 different models at Tekvo (and how we route between them)" |
 | 21 | Fine-tuning & Adaptation (LoRA, QLoRA, RLHF) | Fine-tune an open model on your domain data | "Fine-tuning is not dead: when and how to adapt foundation models" |
 | 22 | Serving Infrastructure (vLLM, TGI, Triton) | Deploy and benchmark inference servers | "Self-hosting LLMs: the architecture that serves 1000 req/s" |
 
@@ -69,5 +69,5 @@ You're not a "tech blogger." You're the **co-founder of Tekvo AI who builds agen
 
 | Week | Model/Topic | Build Project | Key Angle |
 |------|------------|---------------|-----------|
-| 23 | Multi-Agent Architectures | Build a multi-agent system using different models for different roles | "The agent architecture we use at Tekvo AI: which model does what" |
+| 23 | Multi-Agent Architectures | Build a multi-agent system using different models for different roles | "The agent architecture we use at Tekvo: which model does what" |
 | 24 | The Complete Model Selection Guide | Create an interactive decision tree / flowchart | "How to pick the right AI model: a decision framework from 24 weeks of building" |

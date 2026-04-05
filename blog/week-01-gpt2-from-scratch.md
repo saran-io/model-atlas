@@ -7,9 +7,9 @@ tags: ["LLMs", "Transformers", "PyTorch", "GPT-2", "AI Engineering"]
 canonical: "https://saran-io.github.io/blog/building-gpt2-from-scratch/"
 ---
 
-> Week 1 of my 24-week deep dive into AI models. I'm Sayora, co-founder of [Tekvo AI](https://tekvo.ai), where we build agentic systems. This week I implemented GPT-2 from scratch in PyTorch — every layer, every matrix multiply. Here's everything I learned.
+> Week 1 of my 24-week deep dive into AI models. I'm **Saran**, co-founder of [Tekvo](https://tekvo.ai), where we build agentic systems. This week I implemented GPT-2 from scratch in PyTorch — every layer, every matrix multiply. Here's everything I learned.
 
-**Interactive:** Open [`models/01-gpt2-from-scratch/explainer/index.html`](https://github.com/saran-io/model-atlas/tree/main/models/01-gpt2-from-scratch/explainer) in a browser (clone or download the repo), or copy the `explainer/` folder into your site’s static assets — e.g. `https://sayora.dev/labs/gpt2-explainer/` — so readers get a lightweight animated walkthrough of token flow, the block stack, and causal attention.
+**Interactive:** Open [`models/01-gpt2-from-scratch/explainer/index.html`](https://github.com/saran-io/model-atlas/tree/main/models/01-gpt2-from-scratch/explainer) in a browser (clone or download the repo), or copy the `explainer/` folder into your site’s static assets — e.g. `https://saran-io.github.io/labs/gpt2-explainer/` — so readers get a lightweight animated walkthrough of token flow, the block stack, and causal attention.
 
 ## TL;DR
 
@@ -77,7 +77,7 @@ python gpt2.py --visualize --viz_text "The cat sat on the mat"
 
 ## Why this matters for agentic systems
 
-At Tekvo AI we live inside LLM APIs all day. Internals are not academic: they explain why context length hits cost and latency, why hallucinations correlate with attention over irrelevant spans, and why tokenizer quirks become production bugs.
+At **Tekvo** we live inside LLM APIs all day. Internals are not academic: they explain why context length hits cost and latency, why hallucinations correlate with attention over irrelevant spans, and why tokenizer quirks become production bugs.
 
 ## What changed since GPT-2
 

@@ -1,6 +1,6 @@
 # AI Models Deep Dive — Content Strategy
 
-This is Sayora's 6-month AI models content project. One model per week.
+This is Saran's 6-month AI models content project. One model per week.
 
 ## Structure
 - `content/week-XX/` — each week's deliverables (blog, diagrams, code, social posts)

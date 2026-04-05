@@ -1,10 +1,10 @@
 # Week 01 — LinkedIn (GPT-2 from scratch)
 
-Copy-paste ready. Replace `[BLOG_URL]` after you publish (e.g. `https://sayora.dev/blog/gpt2-from-scratch`).
+Copy-paste ready. Replace `[BLOG_URL]` after you publish (e.g. `https://saran-io.github.io/blog/building-gpt2-from-scratch/`).
 
 ---
 
-I just shipped **Week 1** of my 24-week “models from the inside out” series.
+I'm **Saran**. I just shipped **Week 1** of my 24-week “models from the inside out” series.
 
 This week: **GPT-2, implemented from scratch in PyTorch** — not a HuggingFace wrapper, every matmul explicit — then **real OpenAI weights loaded** to prove the implementation matches the reference.
 
@@ -31,7 +31,7 @@ https://github.com/saran-io/model-atlas
 **Blog post:**  
 [BLOG_URL]
 
-At Tekvo AI we build agentic systems every day. Understanding model internals isn’t academic — it’s how we debug failures, reason about cost/latency vs context length, and pick the right model for each agent step.
+At **Tekvo** we build agentic systems every day. Understanding model internals isn’t academic — it’s how we debug failures, reason about cost/latency vs context length, and pick the right model for each agent step.
 
 **Next week:** GPT-4o vs GPT-4.1 on real agentic workloads.
 
