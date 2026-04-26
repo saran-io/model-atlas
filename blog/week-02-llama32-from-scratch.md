@@ -2,9 +2,9 @@
 title: "Llama 3.2 From Scratch - How Modern LLMs Improved on GPT-2"
 description: "Week 2 of the Model Atlas: rebuild the Llama-style decoder block, compare it with GPT-2, and explain why RoPE, RMSNorm, GQA, and SwiGLU became the modern default."
 date: "2026-04-11"
-slug: "llama32-from-scratch"
+slug: "building-llama32-from-scratch"
 tags: ["LLMs", "Transformers", "Llama", "PyTorch", "AI Engineering"]
-canonical: "https://saran-io.github.io/blog/llama32-from-scratch/"
+canonical: "https://saran-io.github.io/blog/building-llama32-from-scratch/"
 ---
 
 > Week 2 of my 24-week deep dive into AI models. Last week I built GPT-2 from scratch. This week I rebuilt the small Llama 3.2-style decoder block to answer one question: what actually changed between the classic GPT-2 stack and the LLM architecture most open models use today?
