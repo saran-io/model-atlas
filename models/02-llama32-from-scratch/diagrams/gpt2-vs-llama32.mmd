@@ -1,0 +1,36 @@
+%%{init: {'theme': 'dark'}}%%
+flowchart LR
+    subgraph GPT2["GPT-2 Block"]
+        A1["Input"] --> A2["LayerNorm"]
+        A2 --> A3["Multi-Head Attention<br/>Q heads = K heads = V heads"]
+        A3 --> A4["+ Residual"]
+        A1 --> A4
+        A4 --> A5["LayerNorm"]
+        A5 --> A6["GELU MLP<br/>hidden -> 4x -> hidden"]
+        A6 --> A7["+ Residual"]
+        A4 --> A7
+        A8["Learned absolute<br/>position embeddings"] -.-> A1
+    end
+
+    subgraph Llama["Llama 3.2-Style Block"]
+        B1["Input"] --> B2["RMSNorm"]
+        B2 --> B3["Grouped-Query Attention<br/>many Q heads, fewer KV heads"]
+        B3 --> B4["+ Residual"]
+        B1 --> B4
+        B4 --> B5["RMSNorm"]
+        B5 --> B6["SwiGLU FFN<br/>gated up projection"]
+        B6 --> B7["+ Residual"]
+        B4 --> B7
+        B8["RoPE<br/>rotates Q and K"] -.-> B3
+    end
+
+    A3 -. "modernizes attention" .-> B3
+    A6 -. "adds gating" .-> B6
+    A2 -. "simplifies norm" .-> B2
+    A8 -. "moves position into attention" .-> B8
+
+    style GPT2 fill:#1a1a2e,stroke:#5f6caf,color:#ffffff
+    style Llama fill:#0f3460,stroke:#9ad3bc,color:#ffffff
+    style A3 fill:#243b55,stroke:#e94560,color:#ffffff
+    style B3 fill:#243b55,stroke:#9ad3bc,color:#ffffff
+    style B6 fill:#243b55,stroke:#f9c74f,color:#ffffff

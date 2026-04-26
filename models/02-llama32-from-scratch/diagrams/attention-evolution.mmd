@@ -1,0 +1,35 @@
+%%{init: {'theme': 'dark'}}%%
+flowchart TB
+    subgraph MHA["Classic Multi-Head Attention"]
+        A["32 Query Heads"] --> B["32 Key Heads"]
+        A --> C["32 Value Heads"]
+        B --> D["Large KV Cache<br/>stores K,V for every head"]
+        C --> D
+    end
+
+    subgraph GQA["Grouped-Query Attention"]
+        E["32 Query Heads"] --> F["8 Shared Key Heads"]
+        E --> G["8 Shared Value Heads"]
+        F --> H["Smaller KV Cache<br/>same queries, fewer K,V states"]
+        G --> H
+    end
+
+    D -. "same core attention,<br/>higher memory cost" .-> H
+
+    subgraph Why["Why Builders Care"]
+        I["Longer context"]
+        J["Lower memory per request"]
+        K["More concurrent users"]
+        L["Cheaper serving"]
+    end
+
+    H --> I
+    H --> J
+    J --> K
+    K --> L
+
+    style MHA fill:#1a1a2e,stroke:#e94560,color:#ffffff
+    style GQA fill:#0f3460,stroke:#9ad3bc,color:#ffffff
+    style Why fill:#162447,stroke:#f9c74f,color:#ffffff
+    style D fill:#3d2c2e,stroke:#e94560,color:#ffffff
+    style H fill:#243b55,stroke:#9ad3bc,color:#ffffff

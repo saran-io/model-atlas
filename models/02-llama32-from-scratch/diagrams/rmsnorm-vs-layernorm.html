@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LayerNorm vs RMSNorm</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:  #f5f5f5;
+      --color-ink:    #2d3142;
+      --color-muted:  #4f5d75;
+      --color-accent: #eb6c36;
+      --font-sans:    'Geist', system-ui, sans-serif;
+      --font-serif:   'Instrument Serif', serif;
+      --font-mono:    'Geist Mono', ui-monospace, monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+    .frame { max-width: 1100px; width: 100%; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      margin-bottom: 1.5rem;
+    }
+    svg { width: 100%; min-width: 900px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Comparison · Normalization</p>
+    <h1>RMSNorm — same idea as LayerNorm, one fewer step</h1>
+
+    <svg viewBox="0 0 1000 540" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+      <!-- ========== LEFT CARD: LayerNorm (baseline) ========== -->
+      <rect x="60" y="80" width="400" height="320" rx="8" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="80" y="100" width="48" height="14" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+      <text x="104" y="111" fill="#2d3142" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">GPT-2</text>
+
+      <text x="260" y="148" fill="#2d3142" font-size="16" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">LayerNorm</text>
+
+      <!-- Equation box -->
+      <rect x="100" y="172" width="320" height="48" rx="6" fill="rgba(45,49,66,0.04)" stroke="rgba(45,49,66,0.20)" stroke-width="1"/>
+      <text x="260" y="204" fill="#2d3142" font-size="16" font-family="'Geist Mono', monospace" text-anchor="middle">y = (x − μ) / √(σ² + ε)</text>
+
+      <!-- Steps -->
+      <text x="100" y="252" fill="#7a8399" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">STEPS</text>
+
+      <rect x="100" y="264" width="20" height="20" rx="4" fill="#f5f5f5" stroke="#4f5d75" stroke-width="1"/>
+      <text x="110" y="278" fill="#4f5d75" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">1</text>
+      <text x="132" y="278" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">Compute mean μ across the feature dim</text>
+
+      <rect x="100" y="292" width="20" height="20" rx="4" fill="#f5f5f5" stroke="#4f5d75" stroke-width="1"/>
+      <text x="110" y="306" fill="#4f5d75" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">2</text>
+      <text x="132" y="306" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">Subtract the mean from every entry</text>
+
+      <rect x="100" y="320" width="20" height="20" rx="4" fill="#f5f5f5" stroke="#4f5d75" stroke-width="1"/>
+      <text x="110" y="334" fill="#4f5d75" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">3</text>
+      <text x="132" y="334" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">Divide by the standard deviation</text>
+
+      <rect x="100" y="348" width="20" height="20" rx="4" fill="#f5f5f5" stroke="#4f5d75" stroke-width="1"/>
+      <text x="110" y="362" fill="#4f5d75" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">4</text>
+      <text x="132" y="362" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">Apply learned scale γ + bias β</text>
+
+      <!-- ========== RIGHT CARD: RMSNorm [FOCAL] ========== -->
+      <rect x="540" y="80" width="400" height="320" rx="8" fill="rgba(235,108,54,0.06)" stroke="#eb6c36" stroke-width="1"/>
+      <rect x="560" y="100" width="56" height="14" rx="2" fill="transparent" stroke="rgba(235,108,54,0.50)" stroke-width="0.8"/>
+      <text x="588" y="111" fill="#eb6c36" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">LLAMA</text>
+
+      <text x="740" y="148" fill="#2d3142" font-size="16" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">RMSNorm</text>
+
+      <!-- Equation box -->
+      <rect x="580" y="172" width="320" height="48" rx="6" fill="#ffffff" stroke="rgba(235,108,54,0.40)" stroke-width="1"/>
+      <text x="740" y="204" fill="#2d3142" font-size="16" font-family="'Geist Mono', monospace" text-anchor="middle">y = x / √(mean(x²) + ε)</text>
+
+      <!-- Steps -->
+      <text x="580" y="252" fill="#eb6c36" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">STEPS</text>
+
+      <!-- Step 1 (struck through, dropped) -->
+      <rect x="580" y="264" width="20" height="20" rx="4" fill="#f5f5f5" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="590" y="278" fill="rgba(45,49,66,0.30)" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">1</text>
+      <text x="612" y="278" fill="rgba(45,49,66,0.40)" font-size="12" font-family="'Geist', sans-serif" text-decoration="line-through">No mean computation</text>
+
+      <rect x="580" y="292" width="20" height="20" rx="4" fill="#f5f5f5" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="590" y="306" fill="rgba(45,49,66,0.30)" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">2</text>
+      <text x="612" y="306" fill="rgba(45,49,66,0.40)" font-size="12" font-family="'Geist', sans-serif" text-decoration="line-through">No mean subtraction</text>
+
+      <rect x="580" y="320" width="20" height="20" rx="4" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1"/>
+      <text x="590" y="334" fill="#eb6c36" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">1</text>
+      <text x="612" y="334" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">Divide by RMS magnitude only</text>
+
+      <rect x="580" y="348" width="20" height="20" rx="4" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1"/>
+      <text x="590" y="362" fill="#eb6c36" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">2</text>
+      <text x="612" y="362" fill="#2d3142" font-size="12" font-family="'Geist', sans-serif">Apply learned scale γ (no bias)</text>
+
+      <!-- Bottom takeaway -->
+      <text x="500" y="448" fill="#4f5d75" font-size="11" font-family="'Geist', sans-serif" font-style="italic" text-anchor="middle">Two operations removed. Same regularizing effect at LLM scale,</text>
+      <text x="500" y="466" fill="#4f5d75" font-size="11" font-family="'Geist', sans-serif" font-style="italic" text-anchor="middle">which is why every modern open model picked it up.</text>
+
+      <!-- Legend strip -->
+      <line x1="40" y1="500" x2="960" y2="500" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+      <text x="40" y="516" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEGEND</text>
+
+      <rect x="120" y="510" width="14" height="10" rx="2" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <text x="140" y="518" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Baseline (LayerNorm)</text>
+
+      <rect x="320" y="510" width="14" height="10" rx="2" fill="rgba(235,108,54,0.06)" stroke="#eb6c36" stroke-width="1"/>
+      <text x="340" y="518" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Modern (RMSNorm)</text>
+    </svg>
+  </div>
+</body>
+</html>

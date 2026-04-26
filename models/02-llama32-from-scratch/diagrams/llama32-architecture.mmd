@@ -1,0 +1,37 @@
+%%{init: {'theme': 'dark'}}%%
+graph TB
+    subgraph Input["Input Processing"]
+        A["Input Text:<br/>'Open models can'"] --> B["Tokenizer<br/>(modern Llama vocabulary)"]
+        B --> C["Token IDs<br/>(B, T)"]
+        C --> D["Token Embeddings<br/>(vocab x hidden)"]
+    end
+
+    D --> E["Hidden States<br/>(B, T, hidden)"]
+
+    subgraph Blocks["x N Llama Decoder Blocks"]
+        E --> F
+
+        subgraph Block["One Decoder Block"]
+            F["Input<br/>(B, T, hidden)"] --> G["RMSNorm"]
+            G --> H["Q, K, V Projections"]
+            H --> I["Apply RoPE<br/>to Q and K"]
+            I --> J["Grouped-Query<br/>Self-Attention<br/>(many Q heads,<br/>fewer KV heads)"]
+            J --> K["+ Residual"]
+            F --> K
+
+            K --> L["RMSNorm"]
+            L --> M["SwiGLU FFN<br/>SiLU(gate) x up<br/>then down projection"]
+            M --> N["+ Residual"]
+            K --> N
+        end
+    end
+
+    N --> O["Final RMSNorm"]
+    O --> P["LM Head<br/>(often tied to embeddings)"]
+    P --> Q["Logits -> Softmax<br/>Next Token"]
+
+    style Input fill:#1a1a2e,stroke:#5f6caf,color:#ffffff
+    style Blocks fill:#0f3460,stroke:#5f6caf,color:#ffffff
+    style Block fill:#162447,stroke:#e94560,color:#ffffff
+    style J fill:#243b55,stroke:#9ad3bc,color:#ffffff
+    style M fill:#243b55,stroke:#f9c74f,color:#ffffff

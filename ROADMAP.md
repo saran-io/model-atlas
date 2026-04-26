@@ -14,7 +14,7 @@ You're not a "tech blogger." You're **Saran** — co-founder of **Tekvo**, build
 | Week | Model/Topic | Build Project | Key Angle |
 |------|------------|---------------|-----------|
 | 1 | GPT-2 (from scratch) | Implement GPT-2 from scratch in PyTorch, load real weights | "I built GPT-2 from scratch — here's what every AI engineer should know" |
-| 2 | GPT-4o / GPT-4.1 (OpenAI) | Build an agent comparing GPT-4o vs 4.1 on real tasks | "GPT-4o vs 4.1: I ran 500 agentic tasks, here's what changed" |
+| 2 | Llama 3.2 (Meta) | Implement a Llama-style decoder block from scratch, compare against GPT-2 | "Llama 3.2 from scratch — how modern LLMs improved on GPT-2" |
 | 3 | Claude Opus/Sonnet (Anthropic) | Build a multi-model agent using Claude's tool use | "What Claude does differently: an agentic systems builder's take" |
 | 4 | Llama 4 (Meta) | Deploy Llama on your own infra, benchmark vs API models | "Llama 4 vs GPT-4: the real cost breakdown for startups" |
 | 5 | DeepSeek V3 / R1 | Compare DeepSeek R1 reasoning vs o3, analyze MoE architecture | "DeepSeek R1: how they built o3-level reasoning for 1/10th the cost" |
